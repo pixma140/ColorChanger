@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Colorchanger</title>	
+	
+	<link rel="shortcut icon" href="favicon.ico" type="image/x-icon" />
+</head>
+		
+	<script>
+	
+		window.addEventListener("deviceorientation",  changeColor, false);
+
+		function changeColor(happening) {
+		
+			var a = Math.round(happening.alpha);
+			var b = Math.round(happening.beta) + 180; //add 180 because values come from -180 to 180
+			var y = Math.round(happening.gamma) + 90; //add 90 because values come from -90 to 90
+			
+			var red;
+			var green;
+			var blue;
+			
+			if (a < 180) {
+				red = Math.round((a / 180) * 255);
+			} else {
+				red = Math.round((-1 * (a / 180) * 255) + 510);
+			}
+			
+			if (b < 180) {
+				green = Math.round((b / 180) * 255);
+			} else {
+				green = Math.round((-1 * (b / 180) * 255) + 510);
+			} 					
+			
+			if (y < 90) {
+				blue = Math.round((y / 90) * 255);
+			} else {
+				blue = Math.round((-1 * (y / 90) * 255) + 510);
+			} 	
+
+			//alert("alpha " + a + " beta " + b + " gamma " + y + "\nred " + red + " green " + green + " blue " + blue);
+			
+			//red = Math.round((a / 360) * 255);
+			//green = Math.round((b / 360) * 255);
+			//blue = Math.round((y / 180) * 255);
+ 			document.body.style.backgroundColor = 'rgb(' + red + ',' + green + ',' + blue + ')';													 			 														
+		}
+	</script>
+</body>
+</html>
